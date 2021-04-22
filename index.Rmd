@@ -1,0 +1,20 @@
+---
+title: 'April 2021 Viz and Tell: Helpful R and Python packages'
+author: "Angela Zoss"
+date: "4/22/2021"
+output: html_document
+---
+
+## Table of Contents
+
+### R packages
+* [plotly](Plotly.html)
+* [DT](DT.html)
+* [Crosstalk](Crosstalk.html)
+* [Flexdashboard](FlexDashboard.html)
+* [LearnR](LearnR-Tutorial/SampleLesson.html)
+
+
+### Python packages
+* [Python notebook on Google CoLab](https://colab.research.google.com/drive/1phbzyW4QE0EYSUiaPGU9bPGqcmjxBiPf?usp=sharing)
+* [Python notebook on GitHub](https://github.com/amzoss/Apr2021VizTell/blob/main/VizAndTellPython.ipynb)
