@@ -4,6 +4,8 @@ This is code prepared for a Viz and Tell public discussion sponsored by the [Vis
 
 This project was made possible in part by the [Institute of Museum and Library Services](https://www.imls.gov/), RE-73-18-0059-18.
 
+[GitHub repository with all files](https://github.com/amzoss/Apr2021VizTell)
+
 ## Table of Contents
 
 ### R packages
