@@ -1,0 +1,88 @@
+---
+title: "DT"
+author: "Angela Zoss"
+date: "4/16/2021"
+output: html_document
+---
+
+DT is a package that displays data frames in a user-friendly way. It works especially well inside R Markdown documents, which can incorporate "HTML widgets," or little chunks of website that get built from the R script, incorporating datasets and analyses in really interesting ways.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message = FALSE)
+```
+
+```{r library, echo=FALSE}
+
+library(tidyverse)
+library(lubridate)
+library(DT)
+
+```
+
+```{r data, echo=FALSE}
+
+# from https://github.com/emonson/pandas-datamatters 
+# and https://github.com/emonson/pandas-jupyterlab
+
+nc_no2_hourly <-  read_csv("https://raw.githubusercontent.com/emonson/pandas-datamatters/main/data/NC_NO2_hourly_2018.csv") %>%
+  mutate(timestamp = ymd(`Date Local`) + hms(`Time Local`))
+
+no2_head <- head(nc_no2_hourly, n=1000)
+
+```
+
+## Default DT output
+
+```{r default}
+
+DT::datatable(no2_head)
+
+```
+
+## Changing DT style with classes
+
+```{r styled}
+
+DT::datatable(no2_head, class = 'cell-border stripe')
+
+```
+
+## Changing additional defaults
+
+```{r change-defaults}
+
+DT::datatable(no2_head, options = list(
+  pageLength = 5,
+  lengthMenu = c(5, 10, 15, 20)
+))
+
+```
+
+## Adding column filters
+
+```{r column-filters}
+
+DT::datatable(no2_head, 
+              filter = 'top', 
+              options = list(
+  pageLength = 5,
+  lengthMenu = c(5, 10, 15, 20)
+))
+
+```
+
+## Turning off global search
+
+```{r no-search}
+
+# see DOM options at https://datatables.net/reference/option/dom
+
+DT::datatable(no2_head, 
+              filter = 'top', 
+              options = list(
+  pageLength = 5,
+  lengthMenu = c(5, 10, 15, 20),
+  dom = 'ltip'
+))
+
+```

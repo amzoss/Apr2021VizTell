@@ -1,0 +1,71 @@
+---
+title: "Plotly"
+author: "Angela Zoss"
+date: "4/16/2021"
+output: html_document
+---
+
+Plotly is a tool that makes it easy to create interactive charts. There is a web version of plotly, as well as packages for R and Python.
+
+In R, plotly works nicely with R Markdown files, which are files that seamlessly blend R code and other visual content like text and images. R Markdown files can be compiled (or "knit") into a variety of formats. When you have interactive plotly charts, you can knit the R Markdown file to an HTML document that can be shared directly with others or hosted on a website.
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message = FALSE)
+```
+
+
+```{r library, echo=FALSE}
+
+library(tidyverse)
+library(lubridate)
+library(plotly)
+
+```
+
+
+```{r data, echo=FALSE}
+
+# from https://github.com/emonson/pandas-datamatters 
+# and https://github.com/emonson/pandas-jupyterlab
+
+nc_no2_hourly <-  read_csv("https://raw.githubusercontent.com/emonson/pandas-datamatters/main/data/NC_NO2_hourly_2018.csv") %>%
+  mutate(timestamp = ymd(`Date Local`) + hms(`Time Local`))
+
+```
+
+```{r box}
+
+box <- plot_ly(nc_no2_hourly, x = ~`Sample Measurement`, color = ~`County Name`, type = "box")
+box
+
+```
+
+```{r line1}
+
+no2_by_county <- nc_no2_hourly %>%
+  pivot_wider(names_from = `County Name`, values_from = `Sample Measurement`)
+
+line <- plot_ly(no2_by_county, x=~`timestamp`, y=~`Forsyth`, name='Forsyth', type = 'scatter', mode='lines') %>%
+  add_trace(y = ~`Mecklenburg`, name = 'Mecklenburg') %>%
+  add_trace(y = ~`Wake`, name = 'Wake')
+  
+line  
+
+```
+
+```{r line2}
+
+no2_by_county_daily <- nc_no2_hourly %>%
+  group_by(`County Name`, `Date Local`) %>%
+  summarise(mean_measurement = mean(`Sample Measurement`, na.rm=T)) %>%
+  pivot_wider(names_from = `County Name`, values_from = mean_measurement)
+
+line <- plot_ly(no2_by_county_daily, x=~`Date Local`, y=~`Forsyth`, name='Forsyth', type = 'scatter', mode='lines') %>%
+  add_trace(y = ~`Mecklenburg`, name = 'Mecklenburg') %>%
+  add_trace(y = ~`Wake`, name = 'Wake')
+  
+line
+
+```
+
