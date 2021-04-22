@@ -7,11 +7,12 @@ This project was made possible in part by the [Institute of Museum and Library S
 ## Table of Contents
 
 ### R packages
-* [plotly](Plotly.html)
-* [DT](DT.html)
-* [Crosstalk](Crosstalk.html)
-* [Flexdashboard](FlexDashboard.html)
-* [LearnR](LearnR-Tutorial/SampleLesson.html)
+* [plotly](https://www.angelazoss.com/Apr2021VizTell/Plotly.html)
+* [DT](https://www.angelazoss.com/Apr2021VizTell/DT.html)
+* [Crosstalk](https://www.angelazoss.com/Apr2021VizTell/Crosstalk.html)
+* [Flexdashboard](https://www.angelazoss.com/Apr2021VizTell/FlexDashboard.html)
+* [Interactive LearnR lesson](https://amz25.shinyapps.io/SampleLesson/#section-introduction)
+* [Basic LearnR lesson code](https://github.com/amzoss/Apr2021VizTell/tree/main/LearnR-Tutorial)
 
 
 ### Python packages
